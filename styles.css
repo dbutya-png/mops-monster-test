@@ -67,9 +67,16 @@ a:focus-visible {
 .ambient {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
   overflow: hidden;
+}
+
+.site-header,
+.app-shell,
+.site-footer {
+  position: relative;
+  z-index: 1;
 }
 
 .orb {
@@ -86,9 +93,57 @@ a:focus-visible {
 .orb-two { right: 12%; top: 55%; animation-delay: -3s; }
 .orb-three { left: 70%; top: 12%; animation-delay: -6s; }
 
+.firefly {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff1bd;
+  box-shadow:
+    0 0 7px 2px rgba(255, 232, 167, .9),
+    0 0 22px 8px rgba(232, 189, 99, .24);
+  opacity: .2;
+  will-change: transform, opacity;
+  animation: firefly-left var(--duration) ease-in-out var(--delay) infinite;
+}
+
+.firefly:nth-of-type(even) {
+  animation-name: firefly-right;
+}
+
+.firefly-violet {
+  background: #d99cff;
+  box-shadow:
+    0 0 7px 2px rgba(217, 156, 255, .88),
+    0 0 24px 9px rgba(165, 89, 221, .22);
+}
+
+.firefly-pink {
+  background: #ffc1e9;
+  box-shadow:
+    0 0 7px 2px rgba(255, 193, 233, .88),
+    0 0 24px 9px rgba(239, 132, 200, .2);
+}
+
 @keyframes float {
   0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: .45; }
   50% { transform: translate3d(16px, -28px, 0) scale(1.45); opacity: .9; }
+}
+
+@keyframes firefly-left {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(.65); opacity: .12; }
+  28% { opacity: .85; }
+  55% { transform: translate3d(-18px, -42px, 0) scale(1.55); opacity: 1; }
+  78% { transform: translate3d(9px, -18px, 0) scale(.8); opacity: .3; }
+}
+
+@keyframes firefly-right {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(.7); opacity: .14; }
+  32% { opacity: .95; }
+  58% { transform: translate3d(22px, -36px, 0) scale(1.45); opacity: .9; }
+  82% { transform: translate3d(-7px, -13px, 0) scale(.75); opacity: .25; }
 }
 
 .site-header {
